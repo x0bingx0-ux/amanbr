@@ -1,0 +1,45 @@
+const user = {
+  id: "AMN-2K8X4P",
+  name: "بدر الشمري",
+  phone: "+963 11 234 5678",
+  email: "badr@example.com",
+  initials: "ب.ش",
+  kycStatus: "approved"
+};
+const balance = {
+  SYP: { available: 79580, invested: 45e3, profits: 8420, change: 18.4 },
+  USD: { available: 320.5, invested: 180, profits: 32.1, change: 4.2 }
+};
+function totalBalance(c) {
+  const b = balance[c];
+  return b.available + b.invested + b.profits;
+}
+const transactions = [
+  { id: "t1", type: "profit", title: "أرباح صندوق التقنية", subtitle: "توزيعات أرباح يومية", amount: 1420, currency: "SYP", date: "منذ ساعتين", status: "completed" },
+  { id: "t2", type: "transfer_out", title: "تحويل إلى محمد فهد", subtitle: "حوالة صادرة", amount: -2500, currency: "SYP", date: "اليوم ٠٩:٣٠ ص", status: "completed" },
+  { id: "t3", type: "deposit", title: "إيداع بنكي", subtitle: "بنك سورية الدولي", amount: 1e4, currency: "SYP", date: "أمس", status: "completed" },
+  { id: "t7", type: "exchange", title: "صرف من ل.س إلى USD", subtitle: "سعر 14,500", amount: 50, currency: "USD", date: "أمس", status: "completed" },
+  { id: "t4", type: "investment", title: "اشتراك في محفظة النمو", subtitle: "خطة استثمارية", amount: -15e3, currency: "SYP", date: "٢٤ أكتوبر", status: "completed" },
+  { id: "t5", type: "withdraw", title: "سحب عبر وكيل", subtitle: "وكيل دمشق", amount: -5e3, currency: "SYP", date: "٢٢ أكتوبر", status: "pending" },
+  { id: "t6", type: "transfer_in", title: "تحويل وارد من أحمد", subtitle: "حوالة داخلية", amount: 4500, currency: "SYP", date: "٢٠ أكتوبر", status: "completed" }
+];
+const activeInvestments = [
+  { id: "i1", planName: "محفظة النمو", amount: 1500, profitEarned: 180, profitExpected: 540, startDate: "١ أكتوبر", endDate: "١ يناير", progress: 45 },
+  { id: "i2", planName: "صندوق الصكوك", amount: 800, profitEarned: 57.6, profitExpected: 345.6, startDate: "١٥ سبتمبر", endDate: "١٥ مارس", progress: 28 }
+];
+function formatCurrency(n) {
+  const abs = Math.abs(n).toLocaleString("ar-SA", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return n < 0 ? `-${abs}` : abs;
+}
+function currencyLabel(c) {
+  return c === "SYP" ? "ل.س" : "$";
+}
+export {
+  activeInvestments as a,
+  balance as b,
+  currencyLabel as c,
+  totalBalance as d,
+  formatCurrency as f,
+  transactions as t,
+  user as u
+};
